@@ -1,3 +1,4 @@
+        <!-- <div class="logo" ><img style="height: 60px;" src="logo2.png" alt=""></div> -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -176,7 +177,7 @@
 
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
         }
 
@@ -194,14 +195,14 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
         }
 
-        .content-item img {
+        .content-item iframe {
             width: 100%;
             height: 220px;
-            object-fit: cover;
+            border: none;
             transition: transform 0.5s ease-in-out;
         }
 
-        .content-item:hover img {
+        .content-item:hover iframe {
             transform: scale(1.1);
         }
 
@@ -213,12 +214,6 @@
 
         .content-item:hover h3 {
             color: #ff2e63;
-        }
-
-        .content-item a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
         }
 
         @keyframes fadeIn {
@@ -266,22 +261,16 @@
         <h2>Films</h2>
         <div class="content-grid">
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=8hP9D6kZseM" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?action" alt="Film 1">
-                    <h3>Film d'Action</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/8hP9D6kZseM" allowfullscreen></iframe>
+                <h3>Film d'Action</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=TcMBFSGVi1c" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?scifi" alt="Film 2">
-                    <h3>Film de Science-Fiction</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/TcMBFSGVi1c" allowfullscreen></iframe>
+                <h3>Film de Science-Fiction</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=Gi58pCTl9nQ" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?romance" alt="Film 3">
-                    <h3>Film Romantique</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/Gi58pCTl9nQ" allowfullscreen></iframe>
+                <h3>Film Romantique</h3>
             </div>
         </div>
     </section>
@@ -291,22 +280,16 @@
         <h2>Stories</h2>
         <div class="content-grid">
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=9ix7TSEBCsQ" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?inspiration" alt="Story 1">
-                    <h3>Histoire Inspirante</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/9ix7TSEBCsQ" allowfullscreen></iframe>
+                <h3>Histoire Inspirante</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=ZyYqyYAKGC0" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?adventure" alt="Story 2">
-                    <h3>Aventure Épique</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/ZyYqyYAKGC0" allowfullscreen></iframe>
+                <h3>Aventure Épique</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=3bGNuRtlmAQ" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?mystery" alt="Story 3">
-                    <h3>Récit Mystérieux</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/3bGNuRtlmAQ" allowfullscreen></iframe>
+                <h3>Récit Mystérieux</h3>
             </div>
         </div>
     </section>
@@ -316,22 +299,16 @@
         <h2>Cartoons</h2>
         <div class="content-grid">
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=2g811Eo7K8U" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?cartoon" alt="Cartoon 1">
-                    <h3>Aventure Animée</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/2g811Eo7K8U" allowfullscreen></iframe>
+                <h3>Aventure Animée</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=DHXZuK9F5EI" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?animation" alt="Cartoon 2">
-                    <h3>Comédie Animée</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/DHXZuK9F5EI" allowfullscreen></iframe>
+                <h3>Comédie Animée</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=1roy4o4tqQM" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?fantasy" alt="Cartoon 3">
-                    <h3>Fantaisie Animée</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/1roy4o4tqQM" allowfullscreen></iframe>
+                <h3>Fantaisie Animée</h3>
             </div>
         </div>
     </section>
@@ -341,22 +318,16 @@
         <h2>Séries</h2>
         <div class="content-grid">
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=5vH3A1twAJo" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?drama" alt="Série 1">
-                    <h3>Série Dramatigue</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/5vH3A1twAJo" allowfullscreen></iframe>
+                <h3>Série Dramatigue</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=mPib2rRWGTg" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?thriller" alt="Série 2">
-                    <h3>Série Thriller</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/mPib2rRWGTg" allowfullscreen></iframe>
+                <h3>Série Thriller</h3>
             </div>
             <div class="content-item">
-                <a href="https://www.youtube.com/watch?v=1VnghdsjI_0" target="_blank">
-                    <img src="https://source.unsplash.com/random/1920x1080?fantasy-series" alt="Série 3">
-                    <h3>Série Fantastique</h3>
-                </a>
+                <iframe src="https://www.youtube.com/embed/1VnghdsjI_0" allowfullscreen></iframe>
+                <h3>Série Fantastique</h3>
             </div>
         </div>
     </section>
