@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratub - Plateforme de Streaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 10px 40px;
+        }
+
+        .logo {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #ff2e63;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(2deg);
+            color: #ff4a7a;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 25px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideIn 0.5s ease-in-out forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2em;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: #ff2e63;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: #ff2e63;
+            bottom: -8px;
+            left: 0;
+            transition: width 0.4s ease-in-out;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/random/1920x1080?cinema');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        .hero p {
+            font-size: 1.6em;
+            max-width: 650px;
+            margin-bottom: 35px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-in-out forwards 0.3s;
+        }
+
+        .cta-button {
+            padding: 15px 35px;
+            background: #ff2e63;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            transition: all 0.4s ease-in-out;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-in-out forwards 0.6s;
+        }
+
+        .cta-button:hover {
+            background: #ff4a7a;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 46, 99, 0.5);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 3em;
+            margin-bottom: 50px;
+            color: #ff2e63;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .content-item {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .content-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .content-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .content-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .content-item h3 {
+            padding: 20px;
+            font-size: 1.3em;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .content-item:hover h3 {
+            color: #ff2e63;
+        }
+
+        .content-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            padding: 30px;
+            text-align: center;
+            color: #999;
+            font-size: 1em;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .footer:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo" ><img style="height: 60px;" src="logo2.png" alt=""></div>
+        <ul class="nav-links">
+            <li style="--i: 1;"><a href="#films">Films</a></li>
+            <li style="--i: 2;"><a href="#stories">Stories</a></li>
+            <li style="--i: 3;"><a href="#cartoons">Cartoons</a></li>
+            <li style="--i: 4;"><a href="#series">Séries</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Bienvenue sur Ratub</h1>
+        <p>Plongez dans un univers de films, séries, cartoons et stories captivantes en streaming Full HD.</p>
+        <a href="#" class="cta-button">Découvrir maintenant</a>
+    </section>
+
+    <!-- Films Section -->
+    <section id="films" class="section">
+        <h2>Films</h2>
+        <div class="content-grid">
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=8hP9D6kZseM" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?action" alt="Film 1">
+                    <h3>Film d'Action</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=TcMBFSGVi1c" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?scifi" alt="Film 2">
+                    <h3>Film de Science-Fiction</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=Gi58pCTl9nQ" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?romance" alt="Film 3">
+                    <h3>Film Romantique</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section id="stories" class="section">
+        <h2>Stories</h2>
+        <div class="content-grid">
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=9ix7TSEBCsQ" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?inspiration" alt="Story 1">
+                    <h3>Histoire Inspirante</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=ZyYqyYAKGC0" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?adventure" alt="Story 2">
+                    <h3>Aventure Épique</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=3bGNuRtlmAQ" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?mystery" alt="Story 3">
+                    <h3>Récit Mystérieux</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cartoons Section -->
+    <section id="cartoons" class="section">
+        <h2>Cartoons</h2>
+        <div class="content-grid">
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=2g811Eo7K8U" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?cartoon" alt="Cartoon 1">
+                    <h3>Aventure Animée</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=DHXZuK9F5EI" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?animation" alt="Cartoon 2">
+                    <h3>Comédie Animée</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=1roy4o4tqQM" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?fantasy" alt="Cartoon 3">
+                    <h3>Fantaisie Animée</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Series Section -->
+    <section id="series" class="section">
+        <h2>Séries</h2>
+        <div class="content-grid">
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=5vH3A1twAJo" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?drama" alt="Série 1">
+                    <h3>Série Dramatigue</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=mPib2rRWGTg" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?thriller" alt="Série 2">
+                    <h3>Série Thriller</h3>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="https://www.youtube.com/watch?v=1VnghdsjI_0" target="_blank">
+                    <img src="https://source.unsplash.com/random/1920x1080?fantasy-series" alt="Série 3">
+                    <h3>Série Fantastique</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Ratub. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Parallax Effect for Hero Section
+        window.addEventListener('scroll', function () {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            hero.style.backgroundPositionY = -(scrolled * 0.3) + 'px';
+        });
+
+        // Content Item Animation on Scroll
+        const contentItems = document.querySelectorAll('.content-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        }, { threshold: 0.3 });
+
+        contentItems.forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(80px) scale(0.9)';
+            item.style.transition = 'all 0.6s ease-in-out';
+            observer.observe(item);
+        });
+
+        // Logo Pulse Animation
+        const logo = document.querySelector('.logo');
+        setInterval(() => {
+            logo.style.animation = 'pulse 2s ease-in-out';
+            setTimeout(() => logo.style.animation = '', 2000);
+        }, 5000);
+
+        // Keyframes for Logo Pulse
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
