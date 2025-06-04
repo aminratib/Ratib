@@ -1,11 +1,9 @@
-        <!-- <div class="logo" ><img style="height: 60px;" src="logo2.png" alt=""></div> -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="logo2.png">
-
+    <link rel="icon" type="image/png" href="logo2.png">
     <title>Ratub - Plateforme de Streaming</title>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
@@ -42,19 +40,13 @@
             padding: 10px 40px;
         }
 
-        .logo {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: #ff2e63;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            cursor: pointer;
+        .logo img {
+            height: 60px;
             transition: all 0.4s ease-in-out;
         }
 
-        .logo:hover {
+        .logo:hover img {
             transform: scale(1.1) rotate(2deg);
-            color: #ff4a7a;
         }
 
         .nav-links {
@@ -96,6 +88,18 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu-toggle:hover {
+            color: #ff2e63;
         }
 
         @keyframes slideIn {
@@ -237,12 +241,169 @@
         .footer:hover {
             color: #ccc;
         }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .navbar.scrolled {
+                padding: 8px 20px;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .nav-links li {
+                margin: 0 15px;
+            }
+
+            .nav-links a {
+                font-size: 1em;
+            }
+
+            .hero h1 {
+                font-size: 3.5em;
+            }
+
+            .hero p {
+                font-size: 1.4em;
+                max-width: 500px;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+
+            .section {
+                padding: 80px 40px;
+            }
+
+            .section h2 {
+                font-size: 2.5em;
+            }
+
+            .content-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .content-item iframe {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar.scrolled {
+                padding: 8px 20px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 20px 0;
+                margin-top: 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.5s ease-in-out forwards;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .nav-links a {
+                font-size: 1.5em;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero {
+                background-attachment: scroll; /* Disable fixed background for mobile */
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+                max-width: 90%;
+            }
+
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section h2 {
+                font-size: 2em;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .content-item iframe {
+                height: 200px;
+            }
+
+            .content-item h3 {
+                font-size: 1.1em;
+                padding: 15px;
+            }
+
+            .footer {
+                padding: 20px;
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo" ><img style="height: 60px;" src="logo2.png" alt=""></div>
+        <div class="logo"><img src="logo2.png" alt="Ratub Logo"></div>
+        <div class="menu-toggle">☰</div>
         <ul class="nav-links">
             <li style="--i: 1;"><a href="#films">Films</a></li>
             <li style="--i: 2;"><a href="#stories">Stories</a></li>
@@ -309,7 +470,7 @@
                 <h3>Comédie Animée</h3>
             </div>
             <div class="content-item">
-                <iframe src="https://www.youtube.com/embed/1roy4o4tqQM" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/1roy4o4tqQM" allowablefullscreen></iframe>
                 <h3>Fantaisie Animée</h3>
             </div>
         </div>
@@ -350,6 +511,11 @@
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
                 });
+                // Close menu on mobile after click
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.menu-toggle').textContent = '☰';
+                }
             });
         });
 
@@ -395,7 +561,15 @@
             setTimeout(() => logo.style.animation = '', 2000);
         }, 5000);
 
-        // Keyframes for Logo Pulse
+        // Menu Toggle for Mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Keyframes for Animations
         const styleSheet = document.createElement('style');
         styleSheet.textContent = `
             @keyframes pulse {
