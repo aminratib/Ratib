@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo2.png">
+    <link rel="icon" type="image/png" href="aminrat.png">
     <title>Ratub - Plateforme de Streaming</title>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
@@ -25,9 +25,8 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0);
+             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -71,7 +70,7 @@
         }
 
         .nav-links a:hover {
-            color: #ff2e63;
+            color: #f81414;
             transform: translateY(-2px);
         }
 
@@ -99,7 +98,7 @@
         }
 
         .menu-toggle:hover {
-            color: #ff2e63;
+            color: #f11111;
         }
 
         @keyframes slideIn {
@@ -109,18 +108,59 @@
             }
         }
 
-        /* Hero Section */
+        /* Hero Section with Carousel */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/random/1920x1080?cinema');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             flex-direction: column;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+            z-index: 1;
+        }
+
+        .hero-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            animation: carouselFade 15s infinite;
+        }
+
+        .hero-carousel img:nth-child(1) { animation-delay: 0s; }
+        .hero-carousel img:nth-child(2) { animation-delay: 5s; }
+        .hero-carousel img:nth-child(3) { animation-delay: 10s; }
+
+        @keyframes carouselFade {
+            0% { opacity: 0; }
+            13.33% { opacity: 1; }
+            33.33% { opacity: 1; }
+            46.66% { opacity: 0; }
+            100% { opacity: 0; }
         }
 
         .hero h1 {
@@ -130,6 +170,8 @@
             opacity: 0;
             transform: translateY(50px);
             animation: fadeInUp 1s ease-in-out forwards;
+            z-index: 2;
+            position: relative;
         }
 
         .hero p {
@@ -139,11 +181,13 @@
             opacity: 0;
             transform: translateY(50px);
             animation: fadeInUp 1s ease-in-out forwards 0.3s;
+            z-index: 2;
+            position: relative;
         }
 
         .cta-button {
             padding: 15px 35px;
-            background: #ff2e63;
+            background: #f71111;
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
@@ -152,10 +196,12 @@
             opacity: 0;
             transform: translateY(50px);
             animation: fadeInUp 1s ease-in-out forwards 0.6s;
+            z-index: 2;
+            position: relative;
         }
 
         .cta-button:hover {
-            background: #ff4a7a;
+            background: #fd1818;
             transform: scale(1.1) translateY(-5px);
             box-shadow: 0 5px 15px rgba(255, 46, 99, 0.5);
         }
@@ -176,7 +222,7 @@
         .section h2 {
             font-size: 3em;
             margin-bottom: 50px;
-            color: #ff2e63;
+            color: #f71717;
             opacity: 0;
             animation: fadeIn 1s ease-in-out forwards;
         }
@@ -219,7 +265,7 @@
         }
 
         .content-item:hover h3 {
-            color: #ff2e63;
+            color: #ff1010;
         }
 
         @keyframes fadeIn {
@@ -353,7 +399,7 @@
             }
 
             .hero {
-                background-attachment: scroll; /* Disable fixed background for mobile */
+                background-attachment: scroll;
             }
 
             .hero h1 {
@@ -412,10 +458,15 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Carousel -->
     <section class="hero">
+        <div class="hero-carousel">
+            <img src="u1.jpeg" alt="Battle Scene">
+            <img src="u2.jpeg" alt="Horror Scene">
+            <img src="u3.jpeg" alt="Action Scene">
+        </div>
         <h1>Bienvenue sur Ratub</h1>
-        <p>Plongez avec MOHAMMED AMINE RATIB dans un univers de films, séries, cartoons et stories captivantes en streaming Full HD.</p>
+        <p>Plongez dans un univers de films, séries, cartoons et stories captivantes en streaming Full HD.</p>
         <a href="#" class="cta-button">Découvrir maintenant</a>
     </section>
 
@@ -424,15 +475,15 @@
         <h2>Films</h2>
         <div class="content-grid">
             <div class="content-item">
-                <iframe src="https://www.youtube.com/embed/8hP9D6kZseM" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TcMBFSGVi1c?rel=0&modestbranding=1&autohide=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0"></iframe>
                 <h3>Film d'Action</h3>
             </div>
             <div class="content-item">
-                <iframe src="https://www.youtube.com/embed/TcMBFSGVi1c" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TcMBFSGVi1c?rel=0&modestbranding=1&autohide=1" frameborder="0" allowfullscreen></iframe>
                 <h3>Film de Science-Fiction</h3>
             </div>
             <div class="content-item">
-                <iframe src="https://www.youtube.com/embed/Gi58pCTl9nQ" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TcMBFSGVi1c?rel=0&modestbranding=1&autohide=1" frameborder="0" allowfullscreen></iframe>
                 <h3>Film Romantique</h3>
             </div>
         </div>
@@ -527,13 +578,6 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
-
-        // Parallax Effect for Hero Section
-        window.addEventListener('scroll', function () {
-            const hero = document.querySelector('.hero');
-            const scrolled = window.pageYOffset;
-            hero.style.backgroundPositionY = -(scrolled * 0.3) + 'px';
         });
 
         // Content Item Animation on Scroll
